@@ -104,6 +104,16 @@ uis.directive('uiSelect',
           var resetSearchInput = scope.$eval(attrs.resetSearchInput);
           $select.resetSearchInput = resetSearchInput !== undefined ? resetSearchInput : true;
         });
+        
+        attrs.$observe('setSearchToAnswer', function() {
+					// $eval() is needed otherwise we get a string instead of a boolean
+					var setSearchToAnswer = scope.$eval(attrs.setSearchToAnswer);
+					$select.setSearchToAnswer = setSearchToAnswer !== undefined ? setSearchToAnswer : true;
+				});
+
+				attrs.$observe('searchBy', function() {
+					$select.searchBy = attrs.searchBy;
+				});
 
         attrs.$observe('paste', function() {
           $select.paste = scope.$eval(attrs.paste);
