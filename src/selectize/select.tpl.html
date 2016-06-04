@@ -2,13 +2,13 @@
   <div class="selectize-input"
        ng-class="{'focus': $select.open, 'disabled': $select.disabled, 'selectize-focus' : $select.focus}"
        ng-click="$select.open && !$select.searchEnabled ? $select.toggle($event) : $select.activate()">
-    <div class="ui-select-match"></div>
+    <div class="ui-select-match" ng-hide="$select.setSearchToAnswer"></div>
     <input type="search" autocomplete="off" tabindex="-1"
            class="ui-select-search ui-select-toggle"
            ng-click="$select.toggle($event)"
            placeholder="{{$select.placeholder}}"
            ng-model="$select.search"
-           ng-hide="!$select.searchEnabled || ($select.selected && !$select.open)"
+           ng-hide="(!$select.searchEnabled || ($select.selected && !$select.open)) && !$select.setSearchToAnswer"
            ng-disabled="$select.disabled"
            aria-label="{{ $select.baseTitle }}">
   </div>
