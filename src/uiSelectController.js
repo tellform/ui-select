@@ -35,6 +35,8 @@ uis.controller('uiSelectCtrl',
 
   ctrl.focusser = undefined; //Reference to input element used to handle focus events
   ctrl.resetSearchInput = true;
+  ctrl.setSearchToAnswer = false;
+  ctrl.searchBy = undefined;
   ctrl.multiple = undefined; // Initialized inside uiSelect directive link function
   ctrl.disableChoiceExpression = undefined; // Initialized inside uiSelectChoices directive link function
   ctrl.tagging = {isActivated: false, fct: undefined};
@@ -93,6 +95,18 @@ uis.controller('uiSelectCtrl',
       }
     }
   }
+  
+  function _setSearchToAnswer() {
+		if (ctrl.setSearchToAnswer || (ctrl.setSearchToAnswer === undefined && uiSelectConfig.setSearchToAnswer) 					{
+			console.log('searchBy: '+ctrl.searchBy);
+
+			if(ctrl.searchBy) {
+				console.log('_setSearchToAnswer');
+				ctrl.resetSearchInput = false;
+				ctrl.search = ctrl.selected[ctrl.searchBy];
+			}
+		}
+	}
 
     function _groupsFilter(groups, groupNames) {
       var i, j, result = [];
@@ -415,6 +429,7 @@ uis.controller('uiSelectCtrl',
     if (!ctrl.open) return;
     if (ctrl.ngModel && ctrl.ngModel.$setTouched) ctrl.ngModel.$setTouched();
     _resetSearchInput();
+    _setSearchToAnswer();
     ctrl.open = false;
 
     $scope.$broadcast('uis:close', skipFocusser);
