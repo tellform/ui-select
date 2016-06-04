@@ -97,7 +97,7 @@ uis.controller('uiSelectCtrl',
   }
   
   function _setSearchToAnswer() {
-		if (ctrl.setSearchToAnswer || (ctrl.setSearchToAnswer === undefined && uiSelectConfig.setSearchToAnswer) 					{
+		if (ctrl.setSearchToAnswer || (ctrl.setSearchToAnswer === undefined && uiSelectConfig.setSearchToAnswer)) {
 			console.log('searchBy: '+ctrl.searchBy);
 
 			if(ctrl.searchBy) {
