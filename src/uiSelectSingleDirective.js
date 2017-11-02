@@ -40,6 +40,9 @@ uis.directive('uiSelectSingle', ['$timeout','$compile', function($timeout, $comp
 
       //Update viewValue if model change
       scope.$watch('$select.selected', function(newValue) {
+        if (attrs.setValueProperty){
+          newValue = newValue[attrs.setValueProperty];
+        }
         if (ngModel.$viewValue !== newValue) {
           ngModel.$setViewValue(newValue);
         }
